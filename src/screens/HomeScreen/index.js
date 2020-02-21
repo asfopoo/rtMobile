@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
   Alert,
-  ActivityIndicator, StatusBar
+  ActivityIndicator, StatusBar, AsyncStorageStatic as AsyncStorage,
 } from 'react-native';
 import React from 'react';
 import styles from './styles';
@@ -57,12 +57,13 @@ class HomeScreen extends React.Component {
 
    async getToken () {
     const fcmToken = await firebase.messaging().getToken();
-    //console.log('token', fcmToken);
+    console.log('token', fcmToken);
     const hasPermission = await firebase.messaging().hasPermission();
-    //console.log('has permission', hasPermission);
+    console.log('has permission', hasPermission);
+
 
     const unsubscribe = firebase.messaging().onMessage(async (remoteMessage) => {
-       //console.log('FCM Message Data:', remoteMessage.data);
+       console.log('FCM Message Data:', remoteMessage.data);
     });
 
 // Unsubscribe from further message events
